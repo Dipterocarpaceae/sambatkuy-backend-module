@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users_profile', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid()->primary();
             $table->string("name");
             $table->enum("gender", ["L", "P"]);
             $table->string("phone", 13);
             $table->string("picture");
+            $table->foreign("uuid")->references("uuid")->on("users_credentials");
             $table->timestamps();
         });
     }

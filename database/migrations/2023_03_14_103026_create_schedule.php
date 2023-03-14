@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_credentials', function (Blueprint $table) {
+        Schema::create('schedule', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->string("username")->unique();
-            $table->string("email")->unique();
-            $table->string("password");
-            $table->string("refresh_token", 100);
+            $table->uuid("psycologist_uuid");
+            $table->dateTime("time");
+            $table->foreign("psycologist_uuid")->references("uuid")->on("psycologist");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_credentials');
+        Schema::dropIfExists('schedule');
     }
 };

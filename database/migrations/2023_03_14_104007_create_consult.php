@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_credentials', function (Blueprint $table) {
+        Schema::create('consult', function (Blueprint $table) {
             $table->uuid()->primary();
-            $table->string("username")->unique();
-            $table->string("email")->unique();
-            $table->string("password");
-            $table->string("refresh_token", 100);
+            $table->uuid("user_uuid");
+            $table->uuid("schedule_uuid");
+            $table->enum("status", ["proses", "setuju", "batal", "tunda"]);
+            $table->foreign("user_uuid")->references("uuid")->on("users_credentials");
+            $table->foreign("schedule_uuid")->references("uuid")->on("schedule");
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_credentials');
+        Schema::dropIfExists('consult');
     }
 };
