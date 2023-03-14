@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('consults', function (Blueprint $table) {
-            $table->uuid()->primary();
-            $table->uuid("user_uuid");
-            $table->uuid("schedule_uuid");
+            $table->uuid("id")->primary();
+            $table->uuid("user_id");
+            $table->uuid("schedule_id");
             $table->enum("status", ["proses", "setuju", "batal", "tunda"]);
-            $table->foreign("user_uuid")->references("id")->on("users");
-            $table->foreign("schedule_uuid")->references("uuid")->on("schedules");
+            $table->foreign("user_id")->references("id")->on("users");
+            $table->foreign("schedule_id")->references("id")->on("schedules");
             $table->timestamps();
         });
     }

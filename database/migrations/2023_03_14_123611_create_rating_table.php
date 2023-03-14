@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ratings', function (Blueprint $table) {
-            $table->uuid()->primary();
-            $table->uuid("user_uuid");
-            $table->uuid("psycologist_uuid");
+            $table->uuid("id")->primary();
+            $table->uuid("user_id");
+            $table->uuid("psycologist_id");
             $table->smallInteger("rating");
             $table->string("comment");
-            $table->foreign("user_uuid")->references("id")->on("users");
-            $table->foreign("psycologist_uuid")->references("uuid")->on("psycologists");
+            $table->foreign("user_id")->references("id")->on("users");
+            $table->foreign("psycologist_id")->references("id")->on("psycologists");
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('psycologists', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->uuid("id")->primary();
             $table->string("front_title", 50);
             $table->string("name");
             $table->string("back_title", 50);
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("specialist");
             $table->string("address");
             $table->char("no_str", 16);
-            $table->foreign("uuid")->references("id")->on("users");
+            $table->foreign("id")->references("id")->on("users");
             $table->timestamps();
         });
     }

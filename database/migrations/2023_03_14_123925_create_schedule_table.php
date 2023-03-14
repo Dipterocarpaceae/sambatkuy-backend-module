@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('schedules', function (Blueprint $table) {
-            $table->uuid()->primary();
-            $table->uuid("psycologist_uuid");
+            $table->uuid("id")->primary();
+            $table->uuid("psycologist_id");
             $table->dateTime("time");
-            $table->foreign("psycologist_uuid")->references("uuid")->on("psycologists");
+            $table->foreign("psycologist_id")->references("id")->on("psycologists");
             $table->timestamps();
         });
     }
