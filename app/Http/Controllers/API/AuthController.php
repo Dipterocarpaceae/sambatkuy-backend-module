@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\UsersCredentials;
 use Illuminate\Support\Facades\Auth as Auth;
 use Illuminate\Support\Facades\Validator as Validator;
 
@@ -23,13 +23,13 @@ class AuthController extends Controller
             return response()->json($validator->errors());
         }
 
-        $user = User::create([
+        $user = UsersCredentials::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('refresh_token')->plainTextToken;
 
         return response()
             ->json(['data' => $user, 'access_token' => $token, 'token_type' => 'Bearer',]);
@@ -42,7 +42,7 @@ class AuthController extends Controller
                 ->json(['message' => 'Unauthorized'], 401);
         }
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        $user = UsersCredentials::where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
         $user->token = $token;
