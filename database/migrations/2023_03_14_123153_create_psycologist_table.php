@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("specialist");
             $table->string("address");
             $table->char("no_str", 16);
-            $table->foreign("uuid")->references("uuid")->on("users");
+            $table->foreign("uuid")->references("id")->on("users");
             $table->timestamps();
         });
     }

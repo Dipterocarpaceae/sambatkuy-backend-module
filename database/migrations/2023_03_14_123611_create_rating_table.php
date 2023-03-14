@@ -19,7 +19,7 @@ return new class extends Migration
             $table->uuid("psycologist_uuid");
             $table->smallInteger("rating");
             $table->string("comment");
-            $table->foreign("user_uuid")->references("uuid")->on("users");
+            $table->foreign("user_uuid")->references("id")->on("users");
             $table->foreign("psycologist_uuid")->references("uuid")->on("psycologists");
             $table->timestamps();
         });

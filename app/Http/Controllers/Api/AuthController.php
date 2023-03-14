@@ -14,6 +14,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'username' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8'
@@ -24,12 +25,13 @@ class AuthController extends Controller
         }
 
         $user = User::create([
+            'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
 
-        $token = $user->createToken('refresh_token')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()
             ->json(['data' => $user, 'access_token' => $token, 'token_type' => 'Bearer',]);

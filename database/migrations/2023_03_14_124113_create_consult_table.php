@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid("user_uuid");
             $table->uuid("schedule_uuid");
             $table->enum("status", ["proses", "setuju", "batal", "tunda"]);
-            $table->foreign("user_uuid")->references("uuid")->on("users");
+            $table->foreign("user_uuid")->references("id")->on("users");
             $table->foreign("schedule_uuid")->references("uuid")->on("schedules");
             $table->timestamps();
         });
