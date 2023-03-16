@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Psycologist extends Model
+class Schedule extends Model
 {
     use HasFactory, HasUuids;
 
@@ -15,7 +15,7 @@ class Psycologist extends Model
      *
      * @var string
      */
-    protected $table = 'psycologists';
+    protected $table = 'schedules';
 
     /**
      * The primary key associated with the table.
@@ -24,13 +24,8 @@ class Psycologist extends Model
      */
     protected $primaryKey = 'id';
 
-    public function user()
+    public function psycologist()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function schedule()
-    {
-        return $this->hasMany(Schedule::class);
+        return $this->belongsTo(Psycologist::class);
     }
 }

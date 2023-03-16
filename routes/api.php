@@ -21,6 +21,7 @@ Route::post("/login", [App\Http\Controllers\Api\AuthController::class, "login"])
 
 Route::get("/psycologists", [\App\Http\Controllers\Api\PsycologistController::class, "getPsycologists"]);
 Route::get("/psycologists/{id}", [\App\Http\Controllers\Api\PsycologistController::class, "getDetailPsycologist"]);
+Route::get("/schedules/{id}", [\App\Http\Controllers\Api\ScheduleController::class, "getPsycologistSchedule"]);
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
