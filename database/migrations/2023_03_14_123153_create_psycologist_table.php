@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("front_title", 50);
             $table->string("name");
             $table->string("back_title", 50);
-            $table->json("education");
+            $table->json("education")->nullable();
             $table->string("specialist");
             $table->string("address");
             $table->char("no_str", 16);
